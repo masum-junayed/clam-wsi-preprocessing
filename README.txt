@@ -3,7 +3,32 @@ CLAM PREPROCESSING GUIDE
 From raw Whole Slide Images (WSI) to 224 x 224 patches
 ================================================================================
 
-This README documents the preprocessing pipeline in this CLAM checkout:
+ATTRIBUTION
+-----------
+This repository bundles the preprocessing-only subset of the CLAM codebase
+(https://github.com/mahmoodlab/CLAM), created by Mahmood Lab. All code files
+here (create_patches_fp.py, extract_features_fp.py, build_preset.py,
+wsi_core/, dataset_modules/dataset_h5.py, models/, utils/, presets/) are
+copied unmodified from that project and remain licensed under GPLv3 (see
+LICENSE.md). The full CLAM project also includes a downstream MIL training/
+evaluation pipeline (main.py, eval.py, model_clam.py, etc.) which is
+intentionally NOT included here, since this repo's scope is preprocessing
+only. For the full framework, use the upstream repo directly.
+
+REPO CONTENTS
+-------------
+    create_patches_fp.py         segment tissue + generate patch coordinates
+    extract_features_fp.py       crop/resize patches + encode into features
+    build_preset.py              helper to build a custom preset .csv
+    presets/                     tuned segmentation parameter presets
+    wsi_core/                    WSI reading, segmentation, patch coord logic
+    dataset_modules/dataset_h5.py  patch-coordinate/image dataset classes
+    models/                      image encoder loader (get_encoder)
+    utils/                       shared helpers (file I/O, transforms, constants)
+    env.yml                      conda environment definition
+    LICENSE.md                   GPLv3 (from upstream CLAM)
+
+This README documents the preprocessing pipeline in this repo:
 raw WSI files (.svs / .tif / .ndpi / ...) -> tissue segmentation -> patch
 coordinates -> (optional) extracted 224x224 patch images / feature vectors.
 
